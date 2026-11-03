@@ -4,12 +4,12 @@ Five interactive WebGL hero sections: the big, moving first screen of a website.
 
 **[Open the page →](https://dandee057.github.io/heroline/)**
 
-![Liquid gradient](docs/1-liquid.jpg)
+![A tour of the five effects, then one restyled in a client's colours and words](docs/tour.gif)
 
 | | |
 | --- | --- |
-| ![Particle logo](docs/2-particles.jpg) | ![Image distortion](docs/3-distort.jpg) |
-| ![Morphing blob](docs/4-blob.jpg) | ![Text through glass](docs/5-glass.jpg) |
+| ![Liquid gradient](docs/1-liquid.jpg) | ![Particle logo](docs/2-particles.jpg) |
+| ![Image distortion](docs/3-distort.jpg) | ![Text through glass](docs/5-glass.jpg) |
 
 ## The five effects
 
@@ -55,7 +55,7 @@ npm test         # the shareable-link encoding
 npm run build    # type-checks, then builds to dist/
 ```
 
-Press 1–5 to switch effects. **Deploying:** in the repository go to *Settings → Pages* and set *Source* to **GitHub Actions**; every push to `main` then tests, builds and deploys.
+Press 1–5 to switch effects. To record a video, open the page with `?debug`, call `heroline.capture()`, then `heroline.shoot(t, dt, input)` draws one exact frame at time `t` with a scripted pointer; that's how the GIF above was made. **Deploying:** in the repository go to *Settings → Pages* and set *Source* to **GitHub Actions**; every push to `main` then tests, builds and deploys.
 
 ## Project structure
 

@@ -215,7 +215,7 @@ addEventListener("blur", () => { input.inside = false; });
 
 /* ---------- The frame loop: only while the hero is on screen ---------- */
 
-let visible = true;
+let visible = true, live = true;
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 }).observe(hero);
 
 let last = performance.now();
@@ -227,7 +227,7 @@ function frame(now: number): void {
   // the pointer's speed dies away when it stops moving
   if (now - lastMove.t > 60) { input.vx *= 0.85; input.vy *= 0.85; }
   document.body.style.setProperty("--scroll", input.scroll.toFixed(3));
-  if (effect && visible && !document.hidden) effect.render((now - started) / 1000, dt, input);
+  if (live && effect && visible && !document.hidden) effect.render((now - started) / 1000, dt, input);
   input.tap = null;
 }
 
@@ -244,6 +244,14 @@ if (new URLSearchParams(location.search).has("debug")) {
     pick: (id: string) => pick(EFFECTS.find((e) => e.id === id)!),
     pointer: (x: number, y: number, inside = true) => { input.x = x; input.y = y; input.inside = inside; },
     tap: (x: number, y: number) => { input.tap = { x, y }; },
-    set: (values: ParamValues) => { Object.assign(state.values, values); applySettings(); }
+    set: (values: ParamValues) => { Object.assign(state.values, values); applySettings(); },
+    /** For recording a video: stop the live loop, then draw exact frames at a given time with a given input. */
+    capture: () => { live = false; },
+    shoot: (t: number, dt: number, inp: Partial<Input>) => {
+      Object.assign(input, { tap: null }, inp);
+      document.body.style.setProperty("--scroll", input.scroll.toFixed(3));
+      effect?.render(t, dt, input);
+      input.tap = null;
+    }
   };
 }
