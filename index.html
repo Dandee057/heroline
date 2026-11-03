@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heroline · Interactive WebGL hero sections</title>
+<meta name="description" content="Five interactive WebGL hero sections, each a custom shader you can restyle live and share as a link. Built with Three.js and TypeScript.">
+<meta name="theme-color" content="#0b0b10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'">
+</head>
+<body>
+  <section class="hero" id="hero" aria-label="Hero preview">
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <header class="bar">
+      <a class="logo" href="#top" aria-label="Heroline">hero<i>line</i></a>
+      <nav class="tabs" id="tabs" aria-label="Choose an effect"></nav>
+      <button class="btn ghost" id="open-panel" type="button" aria-expanded="false" aria-controls="panel">Customise</button>
+    </header>
+
+    <div class="copy" id="copy">
+      <p class="eyebrow" id="h-eyebrow"></p>
+      <h1 id="h-title"></h1>
+      <p class="text" id="h-text"></p>
+      <a class="btn cta" id="h-cta" href="#pack"></a>
+    </div>
+
+    <div class="corner">
+      <p class="fx-name"><span id="fx-index"></span> <b id="fx-name"></b></p>
+      <p class="fx-blurb" id="fx-blurb"></p>
+    </div>
+
+    <aside class="panel" id="panel" aria-label="Customise this hero" hidden>
+      <div class="panel-head">
+        <h2>Customise</h2>
+        <button class="x" id="close-panel" type="button" aria-label="Close">×</button>
+      </div>
+      <form id="params" class="params" autocomplete="off"></form>
+      <fieldset class="params">
+        <legend>Hero text</legend>
+        <label>Brand<input id="t-eyebrow" maxlength="40"></label>
+        <label>Headline<input id="t-title" maxlength="60"></label>
+        <label>Text<textarea id="t-text" maxlength="160" rows="3"></textarea></label>
+        <label>Button<input id="t-cta" maxlength="30"></label>
+      </fieldset>
+      <div class="panel-actions">
+        <button class="btn" id="copy-link" type="button">Copy link</button>
+        <button class="btn ghost" id="reset" type="button">Reset</button>
+      </div>
+      <p class="hint">The link keeps your colours and text, so you can send it to someone.</p>
+    </aside>
+
+    <p class="scroll-hint" aria-hidden="true">Scroll</p>
+  </section>
+
+  <main id="pack">
+    <section class="intro">
+      <p class="eyebrow">Heroline</p>
+      <h2>Five hero sections, <em>each one a shader.</em></h2>
+      <p>The first thing visitors see on your site, made to move. Each of these runs live on the graphics card, reacts to the pointer and the scroll, and can take your colours, words and logo. Pick one to load it above, then open <b>Customise</b>.</p>
+    </section>
+    <ol class="cards" id="cards"></ol>
+    <section class="notes">
+      <div>
+        <h3>Fast</h3>
+        <p>One canvas, one renderer. Each effect builds only what it needs, the frame loop stops when the hero is off screen, and the pixel ratio is capped on big displays.</p>
+      </div>
+      <div>
+        <h3>Works everywhere</h3>
+        <p>Touch works like the pointer: tap for the click effects. With <i>reduce motion</i> turned on the effects keep their look but slow right down. Without WebGL the hero text still shows on a plain background.</p>
+      </div>
+      <div>
+        <h3>Shareable</h3>
+        <p>Every colour, setting and line of text lives in the page address, so a restyled hero is just a link.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Heroline is a portfolio piece by Dan. The brands in the demos are made up. Built with Three.js, GLSL and TypeScript.</p>
+    <p><a href="https://github.com/dandee057/heroline">Source on GitHub</a> · <a href="https://dandeegames.com/">dandeegames.com</a></p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

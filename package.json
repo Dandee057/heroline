@@ -1,0 +1,23 @@
+{
+  "name": "heroline",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Five interactive WebGL hero sections, each a custom shader you can restyle live. Three.js and TypeScript.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --no-warnings --test \"tests/*.test.ts\""
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "@types/three": "0.186.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.1"
+  }
+}
